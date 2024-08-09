@@ -71,11 +71,11 @@ int	main(int argc, char **argv)
 	if (is_duplicate(a) || error_flag == 1)
 	{
 		write(2, "Error\n", 6);
-		err_return(array, &a);
+		arr_stack_free(array, &a);
 		return (1);
 	}
 	if (!is_sorted(a))
 		init_sort(&a, &b);
-	err_return(array, &a);
+	arr_stack_free(array, &a);
 	return (0);
 }

@@ -36,7 +36,7 @@ int		is_sorted(t_stack *a);
 int		is_number(const char *str);
 long	converter(const char *str);
 void	init_sort(t_stack **a, t_stack **b);
-void	err_return(char **str, t_stack **stack);
+void	arr_stack_free(char **array, t_stack **stack);
 
 //Sorting commands (retrieved):
 void	sa(t_stack **a);

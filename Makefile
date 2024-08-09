@@ -18,7 +18,7 @@ LIBFT	= ${LIBFTDIR}/libft.a
 
 INCLUDES	= -I ${LIBFTDIR}
 
-SRCS	= input_checks.c list_utils.c sort_utils.c init_sorting.c swap.c rotate.c rev_rotate.c push.c main2.c err_return.c
+SRCS	= input_checks.c list_utils.c sort_utils.c init_sorting.c swap.c rotate.c rev_rotate.c push.c main2.c arr_stack_free.c
 
 HEAD	= push_swap.h
 
