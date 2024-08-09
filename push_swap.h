@@ -13,7 +13,6 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
 # include "../complete_Libft/libft.h"
@@ -30,11 +29,6 @@ typedef struct s_stack_node
 	struct s_stack_node	*target;
 }	t_stack;
 
-//Retrieved:
-//size_t  ft_strlen(const char *s);//do usuniecia libft
-//char	**ft_split(char const *s, char c);//libft
-//char	*ft_strdup(const char *s);//libft
-//char    *ft_substr(char const *s, unsigned int start, size_t len);//libft
 void	free_stack(t_stack **stack);
 void	fill_stack_a(t_stack **a, char **array, int *error_flag);
 int		is_duplicate(t_stack *a);
@@ -58,13 +52,11 @@ void	pa(t_stack **a, t_stack **b);
 void	pb(t_stack **b, t_stack **a);
 
 //Turk sort utils:
-void	turk_sort(t_stack **a, t_stack **b, int length); //retrieved
 int		ft_lstsize_ps(t_stack *lst);//retrieved
 void	print_stack(t_stack *stack);//retrieved, to be deleted
 t_stack	*find_biggest(t_stack *stack);//retrieved
 t_stack	*find_smallest(t_stack *stack);//retrieved
 t_stack	*find_last(t_stack *stack);//retrieved
-void	sort_three(t_stack **head); //retrieved
 
 //Sort utils: // retrieved
 void	set_cheapest(t_stack *stack);

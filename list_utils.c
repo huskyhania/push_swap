@@ -119,7 +119,6 @@ void	fill_stack_a(t_stack **a, char **array, int *error_flag)
 	int		i;
 
 	i = 0;
-	
 	while (array[i])
 	{
 		if (!(is_number(array[i])))
