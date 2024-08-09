@@ -6,28 +6,13 @@
 /*   By: hskrzypi <hskrzypi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 15:56:21 by hskrzypi          #+#    #+#             */
-/*   Updated: 2024/08/06 20:07:17 by hskrzypi         ###   ########.fr       */
+/*   Updated: 2024/08/09 21:24:05 by hskrzypi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-/*
-void	print_stack(t_stack *stack)
-{
-	t_stack	*tmp;
 
-	tmp = stack;
-	while (tmp != NULL)
-	{
-		printf("%d", tmp->number);
-		if (tmp->next != NULL)
-			printf(" -> ");
-		tmp = tmp->next;
-	}
-	printf("\n");
-}
-*/
-char	**parser(int argc, char **argv)
+static char	**parser(int argc, char **argv)
 {
 	char	**str_arr;
 	int		i;
@@ -52,12 +37,28 @@ char	**parser(int argc, char **argv)
 	return (str_arr);
 }
 
+static void	arr_stack_free(char **array, t_stack **stack)
+{
+	int	i;
+
+	i = 0;
+	while (array[i] != NULL)
+	{
+		free(array[i]);
+		i++;
+	}
+	free(array);
+	if (stack != NULL)
+		free_stack(stack);
+	return ;
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack	*a;
 	t_stack	*b;
 	char	**array;
-	int	error_flag;
+	int		error_flag;
 
 	a = NULL;
 	b = NULL;
@@ -67,7 +68,7 @@ int	main(int argc, char **argv)
 		return (1);
 	else if (argc >= 2)
 		array = parser(argc, argv);
-	fill_stack_a(&a, array, &error_flag);
+	create_stack_a(&a, array, &error_flag);
 	if (is_duplicate(a) || error_flag == 1)
 	{
 		write(2, "Error\n", 6);

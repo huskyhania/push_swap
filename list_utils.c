@@ -6,7 +6,7 @@
 /*   By: hskrzypi <hskrzypi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 19:34:05 by hskrzypi          #+#    #+#             */
-/*   Updated: 2024/08/03 22:46:55 by hskrzypi         ###   ########.fr       */
+/*   Updated: 2024/08/09 20:20:12 by hskrzypi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,58 +86,4 @@ t_stack	*find_smallest(t_stack *stack)
 		current = current->next;
 	}
 	return (smallest);
-}
-
-static void	add_node(t_stack **stack, int n)
-{
-	t_stack	*node;
-	t_stack	*last_node;
-
-	if (!stack)
-		return ;
-	node = malloc(sizeof(t_stack));
-	if (!node)
-		return ;
-	node->next = NULL;
-	node->number = n;
-	if (!(*stack))
-	{
-		*stack = node;
-		node->prev = NULL;
-	}
-	else
-	{
-		last_node = find_last(*stack);
-		last_node->next = node;
-		node->prev = last_node;
-	}
-}
-
-void	fill_stack_a(t_stack **a, char **array, int *error_flag)
-{
-	long	number;
-	int		i;
-
-	i = 0;
-	while (array[i])
-	{
-		if (!(is_number(array[i])))
-		{
-			*error_flag = 1;
-			return ;
-		}
-		i++;
-	}
-	i = 0;
-	while (array[i])
-	{
-		number = converter(array[i]);
-		if (number > INT_MAX || number < INT_MIN)
-		{
-			*error_flag = 1;
-			return ;
-		}
-		add_node(a, (int)number);
-		i++;
-	}
 }

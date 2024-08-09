@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_sorting.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hskrzypi <hskrzypi@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/09 19:54:04 by hskrzypi          #+#    #+#             */
+/*   Updated: 2024/08/09 20:09:41 by hskrzypi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static void	sort_three(t_stack **head)
@@ -21,17 +33,17 @@ static void	turk_sort(t_stack **a, t_stack **b, int length)
 		pb(b, a);
 	while (length-- > 3 && !is_sorted(*a))
 	{
-		init_nodes_a(*a, *b);
-		move_a_to_b(a, b);
+		match_a2b(*a, *b);
+		move_a2b(a, b);
 	}
 	sort_three(a);
 	while (*b)
 	{
-		init_nodes_b(*a, *b);
-		move_b_to_a(a, b);
+		match_b2a(*a, *b);
+		move_b2a(a, b);
 	}
-	current_index(*a);
-	min_on_top(a);
+	set_index_median(*a);
+	front_min(a);
 }
 
 void	init_sort(t_stack **a, t_stack **b)
@@ -47,4 +59,58 @@ void	init_sort(t_stack **a, t_stack **b)
 		sort_three(a);
 	else
 		turk_sort(a, b, n);
+}
+
+static void	create_node(t_stack **stack, int n)
+{
+	t_stack	*node;
+	t_stack	*last_node;
+
+	if (!stack)
+		return ;
+	node = malloc(sizeof(t_stack));
+	if (!node)
+		return ;
+	node->next = NULL;
+	node->number = n;
+	if (!(*stack))
+	{
+		*stack = node;
+		node->prev = NULL;
+	}
+	else
+	{
+		last_node = find_last(*stack);
+		last_node->next = node;
+		node->prev = last_node;
+	}
+}
+
+void	create_stack_a(t_stack **a, char **array, int *error_flag)
+{
+	long	number;
+	int		i;
+
+	i = 0;
+	while (array[i])
+	{
+		if (!(is_number(array[i])))
+		{
+			*error_flag = 1;
+			return ;
+		}
+		i++;
+	}
+	i = 0;
+	while (array[i])
+	{
+		number = converter(array[i]);
+		if (number > INT_MAX || number < INT_MIN)
+		{
+			*error_flag = 1;
+			return ;
+		}
+		create_node(a, (int)number);
+		i++;
+	}
 }

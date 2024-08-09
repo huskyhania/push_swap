@@ -6,7 +6,7 @@
 /*   By: hskrzypi <hskrzypi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 21:53:17 by hskrzypi          #+#    #+#             */
-/*   Updated: 2024/08/04 00:24:56 by hskrzypi         ###   ########.fr       */
+/*   Updated: 2024/08/09 19:05:17 by hskrzypi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,12 @@ void	rrr(t_stack **a, t_stack **b)
 	rev_rotate(a);
 	rev_rotate(b);
 	ft_printf("rrr\n");
+}
+
+void	rev_rotate_both(t_stack **a, t_stack **b, t_stack *cheapest)
+{
+	while (*b != cheapest->target && *a != cheapest)
+		rrr(a, b);
+	set_index_median(*a);
+	set_index_median(*b);
 }
