@@ -1,37 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hskrzypi <hskrzypi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 15:56:21 by hskrzypi          #+#    #+#             */
-/*   Updated: 2024/08/04 00:27:19 by hskrzypi         ###   ########.fr       */
+/*   Updated: 2024/08/09 21:24:05 by hskrzypi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-//to delete printlist
-#include <stdio.h>
-
-//to delete
-void	print_stack(t_stack *stack)
-{
-	t_stack	*tmp;
-
-	tmp = stack;
-	while (tmp != NULL)
-	{
-		printf("%d", tmp->number);
-		if (tmp->next != NULL)
-			printf(" -> ");
-		tmp = tmp->next;
-	}
-	printf("\n");
-}
-
-char	**parser(int argc, char **argv)
+static char	**parser(int argc, char **argv)
 {
 	char	**str_arr;
 	int		i;
@@ -56,43 +37,46 @@ char	**parser(int argc, char **argv)
 	return (str_arr);
 }
 
+static void	arr_stack_free(char **array, t_stack **stack)
+{
+	int	i;
+
+	i = 0;
+	while (array[i] != NULL)
+	{
+		free(array[i]);
+		i++;
+	}
+	free(array);
+	if (stack != NULL)
+		free_stack(stack);
+	return ;
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack	*a;
 	t_stack	*b;
 	char	**array;
+	int		error_flag;
 
 	a = NULL;
 	b = NULL;
 	array = NULL;
-	if (argc == 1 || (argc == 2 && !argv[1][0]))
+	error_flag = 0;
+	if (argc == 1)
 		return (1);
 	else if (argc >= 2)
 		array = parser(argc, argv);
-	fill_stack_a(&a, array);
-	if (is_duplicate(a) == 1)
+	create_stack_a(&a, array, &error_flag);
+	if (is_duplicate(a) || error_flag == 1)
 	{
 		write(2, "Error\n", 6);
-		free_stack(&a);
-		free(array);
-		return (0);
+		arr_stack_free(array, &a);
+		return (1);
 	}
-	print_stack(a);
 	if (!is_sorted(a))
-	{
-//		printf("requires sorting\n"); // to delete
 		init_sort(&a, &b);
-	}
-	//printf("%d, %d\n", a->number, a->prev->number);
-//	else if (is_sorted(a)) //to delete
-//		printf("input is sorted\n");
-//	printf("back to main:\n");
-//	int i = ft_lstsize_ps(a);
-//	printf("amount of numbers on the list %d\n", i);
-//	printf("numbers in stack\n");
-	print_stack(a);
-//	printf("\n");
-	free_stack(&a);
-	free(array);
+	arr_stack_free(array, &a);
 	return (0);
 }

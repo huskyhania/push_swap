@@ -6,7 +6,7 @@
 /*   By: hskrzypi <hskrzypi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 22:56:44 by hskrzypi          #+#    #+#             */
-/*   Updated: 2024/08/09 21:13:48 by hskrzypi         ###   ########.fr       */
+/*   Updated: 2024/08/10 15:59:59 by hskrzypi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,16 +84,5 @@ void	set_index_median(t_stack *stack)
 			stack->is_above_median = 0;
 		stack = stack->next;
 		i++;
-	}
-}
-
-void	front_min(t_stack **a)
-{
-	while ((*a)->number != find_smallest(*a)->number)
-	{
-		if (find_smallest(*a)->is_above_median)
-			ra(a);
-		else
-			rra(a);
 	}
 }

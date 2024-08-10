@@ -6,33 +6,33 @@
 /*   By: hskrzypi <hskrzypi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 20:47:52 by hskrzypi          #+#    #+#             */
-/*   Updated: 2024/08/09 21:15:56 by hskrzypi         ###   ########.fr       */
+/*   Updated: 2024/08/10 15:51:58 by hskrzypi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	set_target_for_b(t_stack *a, t_stack *b)
+static void	set_target_for_b(t_stack *a, t_stack *b)
 {
-	t_stack	*current_a;
+	t_stack	*helper_a;
 	t_stack	*target_node;
-	long	best_match_index;
+	long	best_match_value;
 
 	while (b)
 	{
-		best_match_index = LONG_MAX;
-		current_a = a;
-		while (current_a)
+		best_match_value = LONG_MAX;
+		helper_a = a;
+		while (helper_a)
 		{
-			if (current_a->number > b->number
-				&& current_a->number < best_match_index)
+			if (helper_a->number > b->number
+				&& helper_a->number < best_match_value)
 			{
-				best_match_index = current_a->number;
-				target_node = current_a;
+				best_match_value = helper_a->number;
+				target_node = helper_a;
 			}
-			current_a = current_a->next;
+			helper_a = helper_a->next;
 		}
-		if (best_match_index == LONG_MAX)
+		if (best_match_value == LONG_MAX)
 			b->target = find_smallest(a);
 		else
 			b->target = target_node;

@@ -6,7 +6,7 @@
 /*   By: hskrzypi <hskrzypi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 15:17:45 by hskrzypi          #+#    #+#             */
-/*   Updated: 2024/08/09 21:24:25 by hskrzypi         ###   ########.fr       */
+/*   Updated: 2024/08/10 16:04:23 by hskrzypi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,12 @@ long	converter(const char *str);
 //List utils:
 void	free_stack(t_stack **stack);
 void	create_stack_a(t_stack **a, char **array, int *error_flag);
-//void	arr_stack_free(char **array, t_stack **stack);
 int		ft_lstsize_ps(t_stack *lst);
 t_stack	*find_biggest(t_stack *stack);
 t_stack	*find_smallest(t_stack *stack);
 t_stack	*find_last(t_stack *stack);
 
-//Sorting commands (retrieved):
+//Sorting functions and commands:
 void	sa(t_stack **a);
 void	sb(t_stack **b);
 void	ss(t_stack **a, t_stack **b);
@@ -60,7 +59,6 @@ void	pa(t_stack **a, t_stack **b);
 void	pb(t_stack **b, t_stack **a);
 
 //Turk sort utils:
-
 void	init_sort(t_stack **a, t_stack **b);
 void	set_cheapest(t_stack *stack);
 t_stack	*fetch_cheapest(t_stack *stack);
@@ -71,8 +69,5 @@ void	move_a2b(t_stack **a, t_stack **b);
 void	move_b2a(t_stack **a, t_stack **b);
 void	set_index_median(t_stack *stack);
 void	front_min(t_stack **a);
-void	cost_analysis_a(t_stack *a, t_stack *b);
-void	set_target_for_a(t_stack *a, t_stack *b);
-void	set_target_for_b(t_stack *a, t_stack *b);
 
 #endif

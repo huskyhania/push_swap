@@ -6,33 +6,33 @@
 /*   By: hskrzypi <hskrzypi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 20:30:59 by hskrzypi          #+#    #+#             */
-/*   Updated: 2024/08/09 21:14:15 by hskrzypi         ###   ########.fr       */
+/*   Updated: 2024/08/10 15:59:38 by hskrzypi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	set_target_for_a(t_stack *a, t_stack *b)
+static void	set_target_for_a(t_stack *a, t_stack *b)
 {
-	t_stack	*current_b;
+	t_stack	*helper_b;
 	t_stack	*target_node;
-	long	best_match_index;
+	long	best_match_value;
 
 	while (a)
 	{
-		best_match_index = LONG_MIN;
-		current_b = b;
-		while (current_b)
+		best_match_value = LONG_MIN;
+		helper_b = b;
+		while (helper_b)
 		{
-			if (current_b->number < a->number
-				&& current_b->number > best_match_index)
+			if (helper_b->number < a->number
+				&& helper_b->number > best_match_value)
 			{
-				best_match_index = current_b->number;
-				target_node = current_b;
+				best_match_value = helper_b->number;
+				target_node = helper_b;
 			}
-			current_b = current_b->next;
+			helper_b = helper_b->next;
 		}
-		if (best_match_index == LONG_MIN)
+		if (best_match_value == LONG_MIN)
 			a->target = find_biggest(b);
 		else
 			a->target = target_node;
@@ -40,7 +40,7 @@ void	set_target_for_a(t_stack *a, t_stack *b)
 	}
 }
 
-void	cost_analysis_a(t_stack *a, t_stack *b)
+static void	calculate_cost(t_stack *a, t_stack *b)
 {
 	int	a_length;
 	int	b_length;
@@ -60,12 +60,23 @@ void	cost_analysis_a(t_stack *a, t_stack *b)
 	}
 }
 
+void	front_min(t_stack **a)
+{
+	while ((*a)->number != find_smallest(*a)->number)
+	{
+		if (find_smallest(*a)->is_above_median)
+			ra(a);
+		else
+			rra(a);
+	}
+}
+
 void	match_a2b(t_stack *a, t_stack *b)
 {
 	set_index_median(a);
 	set_index_median(b);
 	set_target_for_a(a, b);
-	cost_analysis_a(a, b);
+	calculate_cost(a, b);
 	set_cheapest(a);
 }
 
