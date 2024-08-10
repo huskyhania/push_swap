@@ -6,7 +6,7 @@
 /*   By: hskrzypi <hskrzypi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 19:20:11 by hskrzypi          #+#    #+#             */
-/*   Updated: 2024/07/30 19:38:04 by hskrzypi         ###   ########.fr       */
+/*   Updated: 2024/08/10 18:10:03 by hskrzypi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	is_number(const char *str)
 	int	i;
 
 	i = 0;
-	if (str[i] == '-')
+	if (str[i] == '-' || str[i] == '+')
 		i++;
 	if (str[i] == '\0')
 		return (0);
@@ -77,9 +77,10 @@ long	converter(const char *str)
 	i = 0;
 	number = 0;
 	negation = 1;
-	if (str[i] == '-')
+	if (str[i] == '-' || str[i] == '+')
 	{
-		negation = -1;
+		if (str[i] == '-')
+			negation = -1;
 		i++;
 	}
 	while (str[i] != '\0')
