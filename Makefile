@@ -6,7 +6,7 @@
 #    By: hskrzypi <hskrzypi@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/30 21:25:26 by hskrzypi          #+#    #+#              #
-#    Updated: 2024/08/09 21:25:01 by hskrzypi         ###   ########.fr        #
+#    Updated: 2024/08/10 16:16:57 by hskrzypi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ LIBFT	= ${LIBFTDIR}/libft.a
 
 INCLUDES	= -I ${LIBFTDIR}
 
-SRCS	= input_checks.c list_utils.c sort_utils.c stack_a_utils.c stack_b_utils.c init_sorting.c swap.c rotate.c rev_rotate.c push.c main2.c
+SRCS	= input_checks.c list_utils.c sort_utils.c stack_a_utils.c stack_b_utils.c init_sorting.c swap.c rotate.c rev_rotate.c push.c main.c
 
 HEAD	= push_swap.h
 
