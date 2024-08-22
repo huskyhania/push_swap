@@ -1,4 +1,4 @@
-Push_swap - a rank 02 project from 42 curriculum 
+Rank 02 project from 42 curriculum 
 Solved using the Turk algorithm (100/100, no bonus)
 
 Fantastic resources to help you do this project:
